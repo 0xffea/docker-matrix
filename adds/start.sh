@@ -39,6 +39,7 @@ configure_homeserver_yaml() {
 	    -v DATABASE="database: \"/data/homeserver.db\"" \
 	    -v LOGFILE="log_file: \"/data/homeserver.log\"" \
 	    -v MEDIASTORE="media_store_path: \"/data/media_store\"" \
+	    -v REGISTRATION="enable_registration: True" \
 	    '{
 		sub(/turn_shared_secret: "YOUR_SHARED_SECRET"/, TURNSHAREDSECRET);
 		sub(/turn_uris: \[\]/, TURNURIES);
@@ -46,7 +47,7 @@ configure_homeserver_yaml() {
 		sub(/database: "\/homeserver.db"/, DATABASE);
 		sub(/log_file: "\/homeserver.log"/, LOGFILE);
 		sub(/media_store_path: "\/media_store"/, MEDIASTORE);
-		sub(/enable_registration: False/, /enable_registration: True/);
+		sub(/enable_registration: False/, REGISTRATION);
 		print;
 	    }' /data/homeserver.tmp > "${filepath}"
 }
