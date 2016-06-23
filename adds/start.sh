@@ -46,7 +46,7 @@ configure_homeserver_yaml() {
 		sub(/database: "\/homeserver.db"/, DATABASE);
 		sub(/log_file: "\/homeserver.log"/, LOGFILE);
 		sub(/media_store_path: "\/media_store"/, MEDIASTORE);
-		sub(/enable_registration: False/, /enable_registration: True);
+		sub(/enable_registration: False/, /enable_registration: True/);
 		print;
 	    }' /data/homeserver.tmp > "${filepath}"
 }
