@@ -7,7 +7,7 @@ if [ ! -z "${ROOTPATH}" ]; then
 	echo ":: variable anymore"
 fi
 
-generate_turn_key() {
+generate_turnkey_file() {
 	local turnkey="${1}"
 	local filepath="${2}"
 
@@ -47,7 +47,7 @@ configure_homeserver_yaml() {
 		sub(/log_file: "\/homeserver.log"/, LOGFILE);
 		sub(/media_store_path: "\/media_store"/, MEDIASTORE);
 		print;
-	    }' /data/homeserver.yaml > "${filepath}"
+	    }' /data/homeserver.tmp > "${filepath}"
 }
 
 case $OPTION in
@@ -109,9 +109,7 @@ case $OPTION in
 		echo "-=> generate synapse config"
 		generate_synapse_file /data/homeserver.tmp
 		echo "-=> configure some settings in homeserver.yaml"
-		configure_homeserver_yaml $turnkey /data/homeserver.tmp
-
-		mv /data/homeserver.tmp /data/homeserver.yaml
+		configure_homeserver_yaml $turnkey /data/homeserver.yaml
 
 		echo "-=> you have to review the generated configuration file homeserver.yaml"
 		;;
