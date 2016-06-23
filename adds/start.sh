@@ -46,6 +46,7 @@ configure_homeserver_yaml() {
 		sub(/database: "\/homeserver.db"/, DATABASE);
 		sub(/log_file: "\/homeserver.log"/, LOGFILE);
 		sub(/media_store_path: "\/media_store"/, MEDIASTORE);
+		sub(/enable_registration: False/, /enable_registration: True);
 		print;
 	    }' /data/homeserver.tmp > "${filepath}"
 }
@@ -110,6 +111,8 @@ case $OPTION in
 		generate_synapse_file /data/homeserver.tmp
 		echo "-=> configure some settings in homeserver.yaml"
 		configure_homeserver_yaml $turnkey /data/homeserver.yaml
+
+		rm /data/homeserver.tmp
 
 		echo "-=> you have to review the generated configuration file homeserver.yaml"
 		;;
