@@ -36,8 +36,7 @@ configure_homeserver_yaml() {
 	awk -v TURNURIES="turn_uris: [\"turn:${SERVER_NAME}:3478?transport=udp\", \"turn:${SERVER_NAME}:3478?transport=tcp\"]" \
 	    -v TURNSHAREDSECRET="turn_shared_secret: \"${turnkey}\"" \
 	    -v PIDFILE="pid_file: /data/homeserver.pid" \
-	    -v DATABASE="database: \"synapse\"\\n    user: \"synapse\"\\n    password: \"synapse\"\\n    host: \"postgres\"\\n" \
-            -v DRIVER="name: \"psycopg2\"" \
+	    -v DATABASE="database: \"/data/homeserver.db\"" \
 	    -v LOGFILE="log_file: \"/data/homeserver.log\"" \
 	    -v MEDIASTORE="media_store_path: \"/data/media_store\"" \
 	    -v REGISTRATION="enable_registration: True" \
@@ -49,7 +48,6 @@ configure_homeserver_yaml() {
 		sub(/log_file: "\/homeserver.log"/, LOGFILE);
 		sub(/media_store_path: "\/media_store"/, MEDIASTORE);
 		sub(/enable_registration: False/, REGISTRATION);
-		sub(/name: "sqlite3"/, DRIVER);
 		print;
 	    }' /data/homeserver.tmp > "${filepath}"
 }
