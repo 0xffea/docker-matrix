@@ -45,6 +45,7 @@ RUN chmod a+x /start.sh \
         openldap \
         openldap-dev \
         openssl-dev \
+	postgresql-dev \
         pwgen \
         py-pip \
         py-virtualenv \
@@ -56,7 +57,7 @@ RUN chmod a+x /start.sh \
         zlib \
         zlib-dev \
         ; \
-    pip install python-ldap \
+    pip install python-ldap  psycopg2 \
     ; \
     curl -L https://github.com/matrix-org/synapse/archive/$BV_SYN.zip -o s.zip \
     && unzip s.zip \
