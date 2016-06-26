@@ -36,7 +36,7 @@ configure_homeserver_yaml() {
 	awk -v TURNURIES="turn_uris: [\"turn:${SERVER_NAME}:3478?transport=udp\", \"turn:${SERVER_NAME}:3478?transport=tcp\"]" \
 	    -v TURNSHAREDSECRET="turn_shared_secret: \"${turnkey}\"" \
 	    -v PIDFILE="pid_file: /data/homeserver.pid" \
-	    -v DATABASE="database: \"/data/homeserver.db\"\n    user: \"synapse\"" \
+	    -v DATABASE="database: \"/data/homeserver.db\"\\n#    user: \"synapse\"" \
 	    -v LOGFILE="log_file: \"/data/homeserver.log\"" \
 	    -v MEDIASTORE="media_store_path: \"/data/media_store\"" \
 	    -v REGISTRATION="enable_registration: True" \
