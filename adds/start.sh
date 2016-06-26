@@ -37,7 +37,7 @@ configure_homeserver_yaml() {
 	    -v TURNSHAREDSECRET="turn_shared_secret: \"${turnkey}\"" \
 	    -v PIDFILE="pid_file: /data/homeserver.pid" \
 	    -v DATABASE="database: \"synapse\"\\n    user: \"synapse\"\\n    password: \"synapse\"\\n    host: \"postgres\"" \
-            -v DRIVER=" name: \"psycopg2\"" \
+            -v DRIVER="name: \"psycopg2\"" \
 	    -v LOGFILE="log_file: \"/data/homeserver.log\"" \
 	    -v MEDIASTORE="media_store_path: \"/data/media_store\"" \
 	    -v REGISTRATION="enable_registration: True" \
